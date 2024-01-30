@@ -1,0 +1,9 @@
+Write the commands below this line. Write one command per line:
+mkdir Fall23
+cd Fall23
+mkdir FOC
+cd FOC
+gedit assignment0.txt
+cp assignment0.txt assignment1.txt
+sudo rm assignment0.txt
+cat assignment1.txt

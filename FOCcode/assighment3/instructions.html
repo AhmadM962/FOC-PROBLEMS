@@ -1,0 +1,747 @@
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Assignment 3</title>
+
+        <style>
+            body {
+                background-color: #fff;
+                color: #333;
+                margin: 33px;
+                font-family: verdana, arial, helvetica, sans-serif;
+                font-size: 13px;
+                line-height: 18px;
+            }
+            p, ol, ul, td {
+                font-family: verdana, arial, helvetica, sans-serif;
+                font-size: 14px;
+                line-height: 18px;
+            }
+            pre {
+                background-color: #eee;
+                padding: 10px;
+                font-size: 11px;
+            }
+            a {
+                color: #000;
+            }
+            th {
+                padding: 0.5rem;
+            }
+            td {
+                padding: 1rem 1rem 1rem 0.6rem;
+            }
+            div {
+                margin-bottom: 32px;
+            }
+            div.field, div.actions {
+                margin-bottom: 10px;
+            }
+            label {
+                display: block;
+            }
+            .center {
+                text-align: center;
+            }
+            .center-table {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .red {
+                color: red;
+            }
+            .underline {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body class="vsc-initialized" data-new-gr-c-s-check-loaded="8.909.0" data-gr-ext-installed="">
+        <div>
+            <h1>Assignment 3: Bulding Functions and Using Arrays</h1>
+            <h3>Due date: Monday, 15/January/2024 11:00 pm</h3>
+            <h4>Allowed number of submissions on Autolab: 16 submissions</h4>
+            <h4>Late days (grace days) allowed: 3 days</h4>
+            <h4>Assignment Criteria: P7, P8 (Arrays and Multi-dimensional Arrays), M1, M2, M3, D2</h4>
+            <h4>Assignment Make-up Criteria: P5, P6</h4>
+            <p>In this assignment you will solve 9 problems that assess 
+your skills in writing programs that implement Functions and use Arrays 
+in C.</p>
+            <p>Each program will be written in a different file, but all programs will be submitted together in one compressed file called <code>handin.tar</code>.</p>
+            <p>Read the following instructions completely before you 
+start writing code to understand what the problems are, where to solve 
+them, how to prepare your <code>handin.tar</code> submission file, and how to test it before submitting.</p>
+        </div>
+        <div>
+            <h2>Getting Started</h2>
+            <ol>
+                <li>Download the lab materials from Autolab using the "Download handout" link and <b>extract</b> its content. You will get one directory called "assignment3-handout".</li>
+                <li>Inside the assignment3-handout directory, you will find a few files. Check the next section to understand what each file does.</li>
+                <li>You need to install a program called <code>make</code> to help you test your code and prepare your submissions.</li>
+                    <p><b>You only have to install <code>make</code> once, so you will not need to do it again in the next assignments.</b></p>
+                <p>To install <code>make</code> on Ubuntu, run the following command in the Ubuntu terminal and write your password when prompted to accept the installation:</p>
+                <p><code>sudo apt install make</code></p>
+                <p><small>Note for Mac users: If you are using Mac, you probably have <code>make</code> installed already. If not, you need to <a href="https://stackoverflow.com/a/10265766/6463999" target="_blank">install the Mac Command Line Tools</a>.</small></p>
+            </ol>
+        </div>
+        <div>
+            <h2>Assignment Files</h2>
+            <p>Inside the extracted directory, you will find multiple C files, 3 files called <code>checker.sh</code>, <code>runguard.c</code>, and <code>Makefile</code>, and a directory called <code>tests</code>. You will need to modify some of these files, while some others should not be modified at all.</p>
+            <h4>Files you need to modify:</h4>
+            <ul>
+                <li>Problem files:</li>
+                <p>Some problems will have one file, while others will 
+have multiple files. The file or files of each problem will be used to 
+solve <b>only that</b> problem.</p>
+                <p>When you submit your assignment, all the problem 
+files will be submitted, even if they are empty. Do not worry, you will 
+only receive grades for the files that you implement, any unimplemented 
+file will get 0 points until it is implemented and graded again. <b>Do NOT delete any of the problem files or change their names. If you do that, they will not be graded.</b></p>
+                <p>To understand what you need to do in each problem, continue reading. Each problem is explained in the Problems section below.</p>
+            </ul>
+            <h4>Files you should NOT modify:</h4>
+            <ul>
+                <li>The <code>tests</code> directory and anything inside it:</li>
+                <p>This directory contains a number of sample tests that
+ will be used to test your code before you submit it. Each problem has 
+its own directory inside <code>tests</code>, and inside each problem's directory there are two directories: <code>inputs</code> and <code>outputs</code>. The <code>inputs</code> directory contains the inputs of the test cases, and the <code>outputs</code>
+ directory contains the expected outputs for the inputs. Do not move, 
+remove, or modify these files. If you do that, you will not be able to 
+test your solutions on your machine.</p>
+
+                <li><code>checker.sh</code> and <code>runguard.c</code>:</li>
+                <p>These two files will help you grade most of your work
+ on your laptop without having to submit it to Autolab. You will not use
+ these file by yourself, but you will be using a command that uses them,
+ so do not worry about them. You do not need to open them or understand 
+how they work.</p>
+
+                <li><code>Makefile</code>:</li>
+                <p>This file contains a few commands (called "make 
+commands") that will make your life A LOT EASIER if you are using Ubuntu
+ or Mac. If you followed the instructions in the Getting Started section
+ above and installed <code>make</code>, you will be able to use a few commands to prepare your submission and test your code before you submit it to Autolab.</p>
+                <p>To run any command, you just have to open the Ubuntu terminal (or the Mac terminal if you are on Mac) then <strong>cd into the assignment3-handout directory</strong> and type one of the following commands:</p>
+                <ol>
+                    <li><code>make prepare-handin</code>: Takes all the problem files in the directory and compresses them together into one file called <code>handin.tar</code>. This will be the file you will submit to Autolab.</li>
+                    <li><code>make test-handin</code>: Takes the <code>handin.tar</code> file that you generated from the <code>make prepare-handin</code>
+ command, and extracts it into a new directory called 
+assignment3-testgrade and and tests your solutions in it. It will 
+display the result of grading in the terminal at the end. Here is an 
+example of how it might look like:</li>
+                    <pre>Cleaning up..
+Compiling Problem 1..
+Running your solution for Problem 1..
+Running test case 1..
+Compiling Problem 2..
+Running your solution for Problem 2..
+Running test case 1..
+Running test case 2..
+.
+.
+===========================================================
+========================= Results =========================
+===========================================================
+Problem 1
+
+[Success] Produces correct output on all cases.
+===========================================================
+Problem 2
+
+[Failure] Produces incorrect output on case 2 with Input:
+15 31.5
+Your output:
+46
+The expected output:
+46.50
+===========================================================
+.
+.
+                        </pre>
+                    <p class="red"><b>Remember to always run <code>make prepare-handin</code> to create a new <code>handin.tar</code> file before running <code>make test-handin</code> to test your code.</b></p>
+                    <li><code>make clean</code>: Deletes any extra files
+ or directories that were created in the handout directory by the other 
+commands (specifically, it deletes the handin.tar file and the 
+assignment3-testgrade directory).</li>
+                    </ol>
+            </ul>
+        </div>
+
+        <div>
+            <h2>Submitting your Work</h2>
+            <p>When you submit your code to Autolab, we test it using a 
+combination of tests. First we apply the tests that were available to 
+you by running the testing make command, and second by running another 
+group of tests that are not available to you. This means that your code 
+might get a full grade on your laptop but might get a lower grade on 
+Autolab because it fails a few other tests. Only your grade on Autolab 
+will be counted.</p>
+            <p>To submit your work to Autolab:</p>
+            <ol>
+                <li>Create a <code>handin.tar</code> file that contains your solutions as described in the section above.</li>
+                <li>Upload <code>handin.tar</code> to Autolab in the assignment page.</li>
+                <li>Accept the academic integrity compliance check.</li>
+                <li>Click submit.</li>
+            </ol>
+            
+            <p><b>Important note:</b> You can only make 16 total 
+submissions for this assignment. Only your last submission will be 
+counted toward your grade. The website displays the number of remaining 
+submissions you have under the assignment submission page.</p>
+            <p>Before submitting your work to Autolab, make sure that 
+you test your code by running the testing make command, and by yourself 
+(compile it with gcc and try it yourself) if you want to try other 
+cases. You can test your work on your laptop as many times as you want 
+before you submit it to Autolab. But you can only submit it 16 times to 
+Autolab for this assignment.</p>
+        </div>
+
+
+        <div class="problems">
+            <h2>Problems</h2>
+            <div>
+                <h3>Problem 1</h3>
+                <p>Solve this problem inside the file <code>problem1.c</code>. <strong>Do not modify any other files for this problem.</strong></p>
+                <p>In this problem you will write a program that sorts 
+(orders) a group of integers descendingly (from larger to smaller) then 
+displays the integers in order in addition to the number of pairs of 
+integers that were swapped while ordering.</p>
+                <p>The following pseudo-code describes the algorithm you
+ will use, if you follow it and implement it correctly, you should be 
+able to solve this problem.</p>
+<pre>- store the number of integers in a variable $count$
+- define an array of size $count$
+- store the integers in the array
+- define a variable to store the number of swaps and initialize it to 0
+- define a variable $i$ and set its value to the first index of the array
+- repeat the following as long as $i$ is less than the size of the array:
+  - find the maximum element between the elements that start at index $i$ and end at the last index in the array
+  - if the index of the maximum element is not equal to $i$:
+    - swap the maximum element with the element at index $i$
+    - increment the number of swaps (add 1 to it)
+  - increment $i$
+- print the number of swaps as in the examples below
+- print the integers of the array on a new line, separate each two integers by a space
+</pre>          
+                <h4>Examples</h4>
+                <table border="1">
+                    <tbody><tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>5<br>1 4 3 2 5</td>
+                        <td>1 swap<br>5 4 3 2 1</td>
+                    </tr>
+                    <tr>
+                        <td>5<br>6 7 8 9 10</td>
+                        <td>2 swaps<br>10 9 8 7 6</td>
+                    </tr>
+                    <tr>
+                        <td>5<br>20 60 50 40 30</td>
+                        <td>4 swaps<br>60 50 40 30 20</td>
+                    </tr>
+                </tbody></table>
+                <p>In the first example, following the algorithm, 1 is swapped with 5. No other swaps happen.</p>
+                <p>In the second example, following the algorithm, 10 is
+ swapped with 6, the array becomes 10 7 8 9 6. Then 7 is swapped with 9,
+ the array becomes 10 9 8 7 6. No other swaps happen.</p>
+                <p>In the third example, following the algorithm, 20 is 
+swapped with 60, the array becomes 60 20 50 40 30. Then 20 is swapped 
+with 50, the array becomes 60 50 20 40 30. Then 20 is swapped with 40, 
+the array becomes 60 50 40 20 30. Then 20 is swapped with 30, the array 
+becomes 60 50 40 30 20. No other swaps happen.</p>
+            </div>
+            <div>
+                <h3>Problem 2</h3>
+                <p>Solve this problem inside the file <code>problem2.c</code>. <strong>Do not modify any other files for this problem.</strong></p>
+
+                <p>In this problem, you will learn a smart way to deal 
+with data in programs. You will create what is called a Frequency Array 
+to quickly find the number of times an integer appears in an array.</p>
+                <p>Before we learn how to do that, think if you had an array of <code>n</code>
+ integers and you were asked to find the number of times the number 6 
+appears in it, you can simply create a loop that counts the number of 
+times an element is equal to 6. For example, assuming we have an array <code>elements</code> that has 10 integers:</p>
+<pre>int count = 0;
+for (int i = 1; i &lt; 10; ++i) {
+    if (elements[i] == 6)
+        ++count;
+}
+printf("The number 6 appears %d times in the array.\n", count);
+</pre>
+            <p>Now if you were asked to repeat the same thing but for a 
+different number, you will have to create another loop, or you can ask 
+the user how many numbers they wish to check then put the previous loop 
+inside another loop and ask the user for a number to check each time:</p>
+<pre>printf("How many numbers do you want to check?\n");
+int numbers;
+scanf("%d", &amp;numbers);
+for (int i = 0; i &lt; numbers; ++i) {
+    printf("Please enter a number:\n");
+    int number;
+    scanf("%d", &amp;number);
+    
+    int count = 0;
+    for (int j = 0; j &lt; 10; ++j) {
+        if (elements[j] == number)
+            ++count;
+    }
+    printf("The number %d appears %d times in the array.\n", number, count);
+}
+</pre>
+                <p>The method above works, but it is slow because each 
+time we will need to go over the whole array to count the number of 
+occurences of the number. A better method to do this is using what is 
+called a Frequency Array.</p>
+                <p>A frequency array is an array that stores the number 
+of times an element appears in another array under an index equal to 
+that number. The following steps and examples will help you understand 
+and build a frequency array:</p>
+                <ul>
+                    <li>The first step is to know what is the maximum 
+number the array can have. We will use this number to create a new 
+array. For example, if you were trying to count grades for students, you
+ know that the maximum grade is 100 so you will use 100 in the next 
+step. In the example in the image below, we will assume that 15 is the 
+maximum number that could be in the array.</li>
+                    <li>We create a new array that has a size equal to the number from the previous step + 1</li>
+                    <li>We set all the elements of the new array to zero</li>
+                    <p class="center"><img src="instructions_files/frequency-array-initial.jpg" width="70%"></p>
+                    <li>Go over all the elements in the original array:</li>
+                    <ul>
+                        <li>We add 1 to the index of the frequency array
+ that is equal to the element in the current index of the original 
+array. For example, if the current element in the original array is 5, 
+we add 1 to index 5 in the frequency array.</li>
+                        <li>This trick allows us to use the indices in 
+the frequency array as the actual numbers, and the values in those 
+indices as the frequencies (or number of occurences or appearances).</li>
+                    </ul>
+                    <li>Once we are done, our frequency array will be 
+ready. Each index will have in it the number of times it appeared in the
+ original array.</li>
+                    <p class="center"><img src="instructions_files/frequency-array-filled.jpg" width="70%"></p>
+                    <li>Now we can simply find the frequency of any 
+number from the original array by going to the index equal to that 
+number in the frequency array. For example, to find the frequency of the
+ number 6 in the original array, we go to the index 6 in the frequency 
+array and find that the answer is 3.</li>
+                </ul>
+                <p>Now it is your turn:</p>
+                <ol>
+                    <li>Write a program that accepts an integer <code>n</code> that corresponds to the number of integers in an array. Then accept <code>n</code> numbers that correspond to the array elements. The maximum element in the array will be equal to 1300.</li>
+                    <li>You will then need to build the frequency array just like we learned above.</li>
+                    <li>After that, your program will accept another integer <code>q</code> that corresponds to the number of integers we need to check the frequency for. The input will then have <code>q</code> integers, print the frequency for each one of them on a new line.</li>
+                </ol>
+                <h4>Example</h4>
+                <table border="1">
+                    <tbody><tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>10<br>8 7 6 7 6 9 6 5 4 5<br>5<br>6 7 5 6 8</td>
+                        <td>3<br>2<br>2<br>3<br>1</td>
+                    </tr>
+                </tbody></table>
+                <p>Explanation: The example above is the same one we 
+have in the figures above. The number 6 appeared 3 times in the original
+ array. The numbers 7 and 5 appeared twice. The number 6 again appeared 3
+ times, and finally 8 appeared once.</p>
+            </div>
+            <div>
+                <h3>Problem 3</h3>
+                <p>Solve this problem inside the file <code>problem3.c</code>. <strong>Do not modify any other files for this problem.</strong></p>
+
+                <p>Your friend got a new job in a shoe factory. He works
+ as a quality assurance officer and is responsible for confirming the 
+quality and numbers of a special shoe called "Cshu". Each day, the 
+factory produces pairs of shoes of different sizes, for example: a pair 
+of size 33 and a pair of size 35. Each pair has 2 shoes (left and 
+right).</p>
+                <p>Your friend noticed that the number of shoes that was
+ produced one day was not even. He reviewed the machines that produce 
+the shoes and discovered an issue in one of them that makes them produce
+ 1 shoe instead of 2. Luckily this only happens one time each day, so 
+only one shoe size will have 1 shoe, but all the other shoe sizes will 
+have 2. He brought a list of the shoe sizes that were produced on that 
+day and asked for your help in writing a program that can find the size 
+of the shoe that appears only once in the list in case the issue happens
+ again.</p>
+                <p>Your program must accept an integer <code>n</code> (<code>n</code> will always be odd) that represents the number of shoe sizes in the list. Your program will then accept <code>n</code>
+ integers, each integer represents a shoe size. Each integer will appear
+ exactly twice, except for one integer that will appear once. You need 
+to find it.</p>
+
+                <h4>Example</h4>
+                <table border="1">
+                    <tbody><tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>5<br>33 35 35 36 33</td>
+                        <td>36</td>
+                    </tr>
+                    <tr>
+                        <td>9<br>40 39 12 12 31 39 40 24 24</td>
+                        <td>31</td>
+                    </tr>
+                </tbody></table>
+                <p><b>Explanation:</b> In the first example, all the 
+shoe sizes appear in the list two times except 36. In the second 
+example, all the shoe sizes appear in the list two times except 31.</p>
+            </div>
+            <div>
+                <h3>Problem 4</h3>
+                <p>Solve this problem inside the files <code>problem4-library.h</code> and <code>problem4-library.c</code>. <strong>Do not modify any other files for this problem.</strong></p>
+
+                <p>In geometry (علم الهندسة الرياضية), a line on the 2D 
+Cartesian system (مستوى الديكارتي ثنائي الأبعاد) can be represented 
+using two values that describe its length and direction, and it is 
+called a Vector.</p>
+                <p>The following figure shows two vectors, the first vector is <code>v = [2, 1]</code>, and the second vector is <code>w = [1, 1]</code>.
+ The first number in the vector description describes how far on the 
+x-axis it goes, and the second number describes how far it goes on the 
+y-axis.</p>
+                <p class="center"><img src="instructions_files/vectors.png" width="40%"></p>
+                <p>If the system was in 3D, the vector will have a third number that describes how far it goes on the z-axis, for example <code>u = [3, 2, 4]</code>. This idea can be generalized to any number of dimensions.</p>
+                <p>The angle between the 2 vectors is needed in many 
+applications such as in physics, aviation, machine learning, and many 
+many more. Your task in this problem is to find the angle between two 
+vectors that have n-dimensions, using the following steps:</p>
+                <ul>
+                    <li>Each vector will be represented using a 1D array. Vector <code>v</code> will have <code>n</code> elements <code>[v<sub>0</sub>, v<sub>1</sub>, v<sub>2</sub>, ..., v<sub>n - 1</sub>]</code>, and vector <code>w</code> will have <code>n</code> elements <code>[w<sub>0</sub>, w<sub>1</sub>, w<sub>2</sub>, ..., w<sub>n - 1</sub>]</code>.</li>
+                    <li>The cosine of the angle between the two vectors 
+(let us call the angle θ - pronounced theta) can be computed using the 
+following formula:</li>
+                    <p class="center"><img src="instructions_files/cosine-equation.png" width="30%"></p>
+                    <li>The dot product of two vectors is simply the sum
+ of the product of elements that have the same indices, it can be 
+computed using the following formula:</li>
+                    <p class="center"><img src="instructions_files/dot-product.png" width="40%"></p>
+                    <li>The magnitude of a vector is its length, it can be computed using the following formula:</li>
+                    <p class="center"><img src="instructions_files/magnitude.png" width="40%"></p>
+                </ul>
+                <p>You need to write the 4 following functions inside <code>problem4-library.c</code>, then add their prototypes to <code>problem4-library.h</code>:</p>
+                <ol>
+                    <li><strong>readArray</strong>: accepts an integer 
+that represents the size of an array, and the array. Asks the user to 
+input the elements of the array and stores them in the array. Returns 
+nothing.</li>
+                    <li><strong>dotProduct</strong>: accepts an integer 
+that represents the size of an array, and two arrays of that size. 
+Returns the dot product of the two arrays using the equation above.</li>
+                    <li><strong>magnitude</strong>: accepts an integer 
+that represents the size of an array, and the array. Returns the 
+magnitude of the passed array using the equation above.</li>
+                    <li><strong>radiansToDegrees</strong>: accepts an 
+angle in radians, and returns its corresponding value in degrees. 
+radians = degrees x π / 180.0, where π = 3.141592.</li>
+                </ol>
+                <p>Hint: Look at the main function in <code>problem4.c</code>
+ but do not modify it. It will help you understand the types each 
+function accepts and returns. The main function prints some things on 
+the screen, do not print them again in your functions.</p>
+                <h4>Example</h4>
+                <table border="1">
+                    <tbody><tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>2<br>2 1<br>1 1</td>
+                        <td>
+                            Vector V has the values:<br>
+                            2.00 1.00<br>
+                            Vector W has the values:<br>
+                            1.00 1.00<br>
+                            The dot product is: 3.00<br>
+                            The magnitude of V is: 2.24<br>
+                            The magnitude of W is: 1.41<br>
+                            The cosine of Theta is: 0.9486832981<br>
+                            Theta in radians is: 0.32<br>
+                            Theta in degrees is: 18.43
+                            </td>
+                    </tr>
+                    <tr>
+                        <td>3<br>1 2 3<br>3 5 2</td>
+                        <td>
+                            Vector V has the values:<br>
+                            1.00 2.00 3.00<br>
+                            Vector W has the values:<br>
+                            3.00 5.00 2.00<br>
+                            The dot product is: 19.00<br>
+                            The magnitude of V is: 3.74<br>
+                            The magnitude of W is: 6.16<br>
+                            The cosine of Theta is: 0.8237544710<br>
+                            Theta in radians is: 0.60<br>
+                            Theta in degrees is: 34.54<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5<br>-2 1 2 -1 0<br>5 0 -1 1 1</td>
+                        <td>
+                            Vector V has the values:<br>
+                            -2.00 1.00 2.00 -1.00 0.00<br>
+                            Vector W has the values:<br>
+                            5.00 0.00 -1.00 1.00 1.00<br>
+                            The dot product is: -13.00<br>
+                            The magnitude of V is: 3.16<br>
+                            The magnitude of W is: 5.29<br>
+                            The cosine of Theta is: -0.7768985961<br>
+                            Theta in radians is: 2.46<br>
+                            Theta in degrees is: 140.98<br>
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+            <div>
+                <h3>Problem 5</h3>
+                <p>Solve this problem inside the file <code>problem5.c</code>. <strong>Do not modify any other files for this problem.</strong></p>
+
+                <p>You are given a 2D array that has <code>n</code> rows and <code>m</code> columns, transform the 2D array to have <code>r</code> rows and <code>c</code> columns then print it.</p>
+                <p>The input starts with <code>n</code>, and <code>m</code>. Then follows <code>n</code> lines, each line has <code>m</code> integers that represent the 2D array. The last line contains two integer <code>r</code> and <code>c</code>.</p>
+                <ul>
+                    <li>Start working on the first row of the original 
+array, move its columns from left to right to the new array, then 
+continue to the next row, and so on.</li>
+                    <li>If the new dimensions are smaller than the old dimensions, ignore the extra elements.</li>
+                    <li>If the new dimensions are larger than the old dimensions, assign the integer 1 to each extra element.</li>
+                </ul>
+
+
+                <h4>Example</h4>
+                <table border="1">
+                    <tbody><tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>1 4<br>9 4 7 1<br>2 2</td>
+                        <td>9 4<br>7 1</td>
+                    </tr>
+                    <tr>
+                        <td>3 3<br>2 3 2<br>3 9 1<br>4 5 0<br>2 3</td>
+                        <td>2 3 2<br>3 9 1</td>
+                    </tr>
+                    <tr>
+                        <td>3 3<br>2 3 2<br>3 9 1<br>4 5 0<br>3 4</td>
+                        <td>2 3 2 3<br>9 1 4 5<br>0 1 1 1<br></td>
+                    </tr>
+                </tbody></table>
+            </div>
+            <div>
+                <h3>Problem 6</h3>
+                <p>Solve this problem inside the files <code>problem6-library.h</code> and <code>problem6-library.c</code>. <strong>Do not modify any other files for this problem.</strong></p>
+
+                <p>You are given two arrays. The first array has size <code>n</code> and the second array has size <code>m</code>.</p>
+                <p>You are required to find and print the elements that 
+appear in both arrays using the frequency array method you learned in 
+Problem 2. A solution that does not use the frequency array method will 
+be too slow when the arrays are too large and will not be considered 
+correct.</p>
+                <p>Write two functions:</p>
+                <ul>
+                    <li><strong>findFreq</strong>: accepts an array of 
+size 1001, in addition to an integer representing the size of an array, 
+and an array. Adds to the frequency array the number of occurrences of 
+each element in the array that is passed as the third parameter. Does 
+not return anything and does not print anything.</li>
+                    <li><strong>findIntersection</strong>: accepts an 
+integer that represents the size of the first array, the first array, 
+another integer that represents the size of the second array, and the 
+second array. Does not return anything, but prints the elements that 
+appear in both arrays in ascending order (تصاعديا).</li>
+                </ul>
+
+                <p>Notes:</p>
+                <ol>
+                    <li>Check the main function inside <code>problem6.c</code>, it prints some things on the screen. Do not modify them or print them again in your function.</li>
+                    <li>Copy your code from Problem 2 to the <code>findFreq</code> function. Modify it to make it work inside the function.</li>
+                    <li>Implement the <code>findIntersection</code> function. The function must call the <code>findFreq</code> function where appropriate.</li>
+                    <li>Inside the <code>findIntersection</code> function, print the elements that appear in both arrays on one line separated by spaces.</li>
+                    <li>Print the elements that appear in both arrays in ascending order (تصاعديا).</li>
+                    <li>Do not print duplicate elements more than once, 
+i.e., if the first array has [2 2 3] and the second array has [2 2 2 4],
+ print 2 only once.</li>
+                    <li>Check the examples below if you need more clarity.</li>
+                </ol>
+
+                <h4>Example</h4>
+                <table border="1">
+                    <tbody><tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>5<br>33 34 35 36 37<br>4<br>1 2 33 3</td>
+                        <td>
+                            The frequencies of the elements of array 1 are:<br>
+                            33 =&gt; 1 time, 34 =&gt; 1 time, 35 =&gt; 1 time, 36 =&gt; 1 time, 37 =&gt; 1 time<br>
+                            The elements that appear in both arrays are:<br>
+                            33
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4<br>9 7 48 13<br>4<br>12 7 9 48</td>
+                        <td>
+                            The frequencies of the elements of array 1 are:<br>
+                            9 =&gt; 1 time, 7 =&gt; 1 time, 48 =&gt; 1 time, 13 =&gt; 1 time<br>
+                            The elements that appear in both arrays are:<br>
+                            7 9 48
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3<br>1 2 3<br>6<br>7 8 9 12 20 6</td>
+                        <td>
+                            The frequencies of the elements of array 1 are:<br>
+                            1 =&gt; 1 time, 2 =&gt; 1 time, 3 =&gt; 1 time<br>
+                            The elements that appear in both arrays are:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3<br>2 2 3<br>4<br>2 2 2 4</td>
+                        <td>
+                            The frequencies of the elements of array 1 are:<br>
+                            2 =&gt; 2 times, 2 =&gt; 2 times, 3 =&gt; 1 time<br>
+                            The elements that appear in both arrays are:<br>
+                            2
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+            <div>
+                <h3>Problem 7</h3>
+                <p>Solve this problem inside the file <code>problem7-library.c</code>. <strong>Do not modify any other files for this problem.</strong></p>
+                <p>In this problem, you need to fix the function <code>replace</code> inside <code>problem7-library.c</code>. All the other provided code for this problem is correct.</p>
+                <p>Start by opening <code>problem7-library.h</code> and reading the function's description, then go to <code>problem7.c</code> to see how the function is used inside the main function.</p>
+                <p>When you have a good idea about how the function should work, go to <code>problem7-library.c</code> and update the function to fix any issues in it. The function's parameters are all correct and should not be changed.<br><b>Write a comment inside the code explaining what the issues were.</b></p>
+                <p class="red"><b>Note:</b> This problem can only be 
+tested by submitting your handin to Autolab. Therefore make sure you 
+test it by yourself and try many cases before you submit it.</p>
+            </div>
+            <div>
+                <h3>Problem 8</h3>
+                <p>Solve this problem inside the file <code>problem8-library.c</code>. <strong>Do not modify any other files for this problem.</strong></p>
+                <p>A polynomial is a simple equation that when given the x value of a point, gives a y value for that point.</p>
+                <p>For example: <code>y = x<sup>2</sup> + 2x + 1</code> 
+is a polynomial. If we want to find the y value of a point that has the 
+value x = 2, we plug it into the polynomial and find that y = 4 + 4 + 1 =
+ 9, so the point will be (2, 9).</p>
+                <p>If you do not know the polynomial equation but have a
+ group of points (x, y) generated from that polynomial, you can use them
+ to approximate a new point by finding the y value for any new x. You 
+will write 3 functions to do that as follows:</p>
+                <ol>
+                    <li>Open the file <code>problem8-library.h</code> and look at the 3 function prototypes we defined for you: <strong>findTerm</strong>, <strong>findAllPointTerms</strong>, and <strong>findY</strong>.</li>
+                    <li>Read the description of the function <strong>findTerm</strong> then implement it inside <code>problem8-library.c</code>.</li>
+                    <li>Read the description of the function <strong>findAllPointTerms</strong> then implement it inside <code>problem8-library.c</code>.</li>
+                    <li>Read the description of the function <strong>findY</strong> then implement it inside <code>problem8-library.c</code>.</li>
+                    <li>The code inside <code>problem8.c</code> is 
+already written for you. It will ask the user to enter the x and y 
+values for a group of points, then use your functions to approximate the
+ value of y for a number of new points. You can read it if you want to 
+understand the input.</li>
+                </ol>
+                <p>The functions you will write implement the following equations to approximate the value. <span class="underline"><strong>It is okay if you do not understand them, you do not have to understand them to solve this problem</strong></span>. We have explained everything you need to do in <code>problem8-library.h</code> before each function. The equations below are just provided for more context.</p>
+                <p class="center"><img src="instructions_files/problem9.jpg" width="50%"></p>
+                <h4>Example</h4>
+                <table border="1">
+                    <tbody><tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            4<br>
+                            0 1<br>
+                            1 4<br>
+                            3 16<br>
+                            4 25<br>
+                            1<br>
+                            2
+                        </td>
+                        <td>
+                            The value of findTerm for new point 2.0000 using points 0 and 1 is: -1.0000<br>
+                            The value of findTerm for new point 2.0000 using points 0 and 2 is: 0.3333<br>
+                            The value of findAllPointTerms for new point 2.0000 using point 0 is: -0.1667<br>
+                            The value of findAllPointTerms for new point 2.0000 using point 1 is: 2.6667<br>
+                            The value of findY for new point 2.0000 using all points is: 9.00000000
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            5<br>
+                            -1 3<br>
+                            0 -6<br>
+                            3 39<br>
+                            6 822<br>
+                            7 1611<br>
+                            2<br>
+                            2 5
+                        </td>
+                        <td>
+                            The value of findTerm for new point 2.0000 using points 0 and 1 is: -2.0000<br>
+                            The value of findTerm for new point 2.0000 using points 0 and 2 is: 0.2500<br>
+                            The value of findAllPointTerms for new point 2.0000 using point 0 is: -0.5357<br>
+                            The value of findAllPointTerms for new point 2.0000 using point 1 is: -2.8571<br>
+                            The value of findY for new point 2.0000 using all points is: 6.00000000<br>
+                            The value of findTerm for new point 5.0000 using points 0 and 1 is: -5.0000<br>
+                            The value of findTerm for new point 5.0000 using points 0 and 2 is: -0.5000<br>
+                            The value of findAllPointTerms for new point 5.0000 using point 0 is: 0.2679<br>
+                            The value of findAllPointTerms for new point 5.0000 using point 1 is: 1.1429<br>
+                            The value of findY for new point 5.0000 using all points is: 369.00000000
+                        </td>
+                    </tr>
+                </tbody></table>
+                <h4>Notes</h4>
+                <p>In the first example, we have 4 known points, and we use them to approximate the value of one new point with x = 2.<br>The points in the first example are actually generated from the same polynomial we mentioned above <code>y = x<sup>2</sup> + 2x + 1</code>. Notice how the code correctly approximated the value of y for x = 2 to be 9.</p>
+                <p>In the second example we have 5 points, and we use them to approximate the values of 2 new points with x = 2 and x = 5.</p>
+            </div>
+            <div>
+                <h3>Problem 9</h3>
+                <p>Solve this problem inside the file <code>problem9.c</code>. <strong>Do not modify any other files for this problem.</strong></p>
+                <p>You are given a 2D array that has <code>n</code> rows and <code>m</code> columns, find the sum of its elements using the following instructions:</p>
+                <ul>
+                    <li>Start with the first column</li>
+                    <li>Go over the elements of the first column from top to bottom</li>
+                    <li>Add each element to the sum</li>
+                    <li>Before moving to a new row, multiply the sum so far by 10</li>
+                    <li>Once you finish the first column, divide the sum by 10, then go to the first element of the second column</li>
+                    <li>Repeat the above for all the columns</li>
+                    <li>Print the resulting sum</li>
+                </ul>
+                <p>The input starts with <code>n</code>, and <code>m</code>. Then follows <code>n</code> lines, each line has <code>m</code> integers that represent the 2D array.</p>
+                <h4>Example</h4>
+                <table border="1">
+                    <tbody><tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>3 3<br>8 3 9<br>0 1 2<br>3 8 4</td>
+                        <td>803192</td>
+                    </tr>
+                    <tr>
+                        <td>2 2<br>2 7<br>3 4</td>
+                        <td>27</td>
+                    </tr>
+                    <tr>
+                        <td>3 4<br>0 2 3 1<br>23 83 12 0<br>7 4 4 1</td>
+                        <td>24034210</td>
+                    </tr>
+                </tbody></table>
+                <p>In the second example, following the instructions: 
+After we add the first 2 to the sum, we multiply by 10 to get 20, then 
+we add 3 to get 23. We finished a column so we divide by 10 to get 2. 
+Then we start with the new column, we multiply by 10 to get 20, we add 7
+ to get 27, we multiply by 10 to get 270, we add 4 to get 274, we 
+finally divide by 10 because we finished a column so we get 27.</p>
+            </div>
+        </div>
+    
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

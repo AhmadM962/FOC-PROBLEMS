@@ -1,0 +1,402 @@
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Assignment 1</title>
+
+        <style>
+            body {
+                background-color: #fff;
+                color: #333;
+                margin: 33px;
+                font-family: verdana, arial, helvetica, sans-serif;
+                font-size: 13px;
+                line-height: 18px;
+            }
+            p, ol, ul, td {
+                font-family: verdana, arial, helvetica, sans-serif;
+                font-size: 14px;
+                line-height: 18px;
+            }
+            pre {
+                background-color: #eee;
+                padding: 10px;
+                font-size: 11px;
+            }
+            a {
+                color: #000;
+            }
+            th {
+                padding: 0.5rem;
+            }
+            td {
+                padding: 1rem 1rem 1rem 0.6rem;
+            }
+            div {
+                margin-bottom: 32px;
+            }
+            div.field, div.actions {
+                margin-bottom: 10px;
+            }
+            label {
+                display: block;
+            }
+            .center {
+                text-align: center;
+            }
+            
+        </style>
+    </head>
+    <body class="vsc-initialized" data-new-gr-c-s-check-loaded="8.909.0" data-gr-ext-installed="">
+        <div>
+            <h1>Assignment 1: Output, Input, and Selection</h1>
+            <h3>Due date: Friday, 24/November/2023 11:00 pm</h3>
+            <h4>Late days (grace days) allowed: 1 day</h4>
+            <p>In this assignment you will solve 6 problems that assess your skills in dealing with Ubuntu, Output, Input, and Selection in C.</p>
+            <p>Each program will be written in a different file, but all programs will be submitted together in one compressed file called <code>handin.tar</code>.</p>
+            <p>Read the following instructions completely before you 
+start writing code to understand what the problems are, where to solve 
+them, how to prepare your <code>handin.tar</code> submission file, and how to test it before submitting.</p>
+        </div>
+        <div>
+            <h2>Getting Started</h2>
+            <ol>
+                <li>Download the lab materials from Autolab using the "Download handout" link and <b>extract</b> its content. You will get one directory called "assignment1-handout".</li>
+                <li>Inside the assignment1-handout directory, you will find a few files. Check the next section to understand what each file does.</li>
+                <li>You need to install a program called <code>make</code> to help you test your code and prepare your submissions.</li>
+                    <p><b>You only have to install <code>make</code> once, so you will not need to do it again in the next assignments.</b></p>
+                <p>To install <code>make</code> on Ubuntu, run the following command in the Ubuntu terminal and write your password when prompted to accept the installation:</p>
+                <p><code>sudo apt install make</code></p>
+                <p><small>Note for Mac users: If you are using Mac, you probably have <code>make</code> installed already. If not, you need to <a href="https://stackoverflow.com/a/10265766/6463999" target="_blank">install the Mac Command Line Tools</a>.</small></p>
+            </ol>
+        </div>
+        <div>
+            <h2>Assignment Files</h2>
+            <p>Inside the extracted directory, you will find multiple C files, 1 file called <code>problem1.txt</code>, 3 files called <code>checker.sh</code>, <code>runguard.c</code>, and <code>Makefile</code>, and a directory called <code>tests</code>. You will need to modify some of these files, while some others should not be modified at all.</p>
+            <h4>Files you need to modify:</h4>
+            <ul>
+                <li>Problem files:</li>
+                <p><b>Each problem will have one file in this assignment.</b> Problem 1 will be solved in a text file called <code>problem1.txt</code> but other problems have C files called <code>problem2.c</code> for problem 2, and <code>problem3.c</code> for problem 3, and so on. The file of each problem will be used to solve <b>only that</b> problem.</p>
+                <p>When you submit your assignment, all the problem 
+files will be submitted, even if they are empty. Do not worry, you will 
+only receive grades for the files that you implement, any unimplemented 
+file will get 0 points until it is implemented and graded again. <b>Do NOT delete any of the problem files or change their names. If you do that, they will not be graded.</b></p>
+                <p>To understand what you need to do in each problem, continue reading. Each problem is explained in the Problems section below.</p>
+            </ul>
+            <h4>Files you should NOT modify:</h4>
+            <ul>
+                <li>The <code>tests</code> directory and anything inside it:</li>
+                <p>This directory contains a number of sample tests that
+ will be used to test your code before you submit it. Each problem has 
+its own directory inside <code>tests</code>, and inside each problem's directory there are two directories: <code>inputs</code> and <code>outputs</code>. The <code>inputs</code> directory contains the inputs of the test cases, and the <code>outputs</code>
+ directory contains the expected outputs for the inputs. Do not move, 
+remove, or modify these files. If you do that, you will not be able to 
+test your solutions on your machine.</p>
+
+                <li><code>checker.sh</code> and <code>runguard.c</code>:</li>
+                <p>These two files will help you grade most of your work
+ on your laptop without having to submit it to Autolab. You will not use
+ these file by yourself, but you will be using a command that uses them,
+ so do not worry about them. You do not need to open them or understand 
+how they work.</p>
+
+                <li><code>Makefile</code>:</li>
+                <p>This file contains a few commands (called "make 
+commands") that will make your life A LOT EASIER if you are using Ubuntu
+ or Mac. If you followed the instructions in the Getting Started section
+ above and installed <code>make</code>, you will be able to use a few commands to prepare your submission and test your code before you submit it to Autolab.</p>
+                <p>To run any command, you just have to open the Ubuntu terminal (or the Mac terminal if you are on Mac) then <strong>cd into the assignment1-handout directory</strong> and type one of the following commands:</p>
+                <ol>
+                    <li><code>make prepare-handin</code>: Takes all the problem files in the directory and compresses them together into one file called <code>handin.tar</code>. This will be the file you will submit to Autolab.</li>
+                    <li><code>make test-handin</code>: Takes the <code>handin.tar</code> file that you generated from the <code>make prepare-handin</code>
+ command, and extracts it into a new directory called 
+assignment1-testgrade and and tests your solutions in it. It will 
+display the result of grading in the terminal at the end. Here is an 
+example of how it might look like:</li>
+                    <pre>Cleaning up..
+Compiling Problem 1..
+Running your solution for Problem 1..
+Running test case 1..
+Compiling Problem 2..
+Running your solution for Problem 2..
+Running test case 1..
+Running test case 2..
+.
+.
+===========================================================
+========================= Results =========================
+===========================================================
+Problem 1
+
+[Success] Produces correct output on all cases.
+===========================================================
+Problem 2
+
+[Failure] Produces incorrect output on case 2 with Input:
+15 31.5
+Your output:
+46
+The expected output:
+46.50
+===========================================================
+.
+.
+                        </pre>
+                    <p>Remember to always run <code>make prepare-handin</code> to create a new <code>handin.tar</code> file before running <code>make test-handin</code> to test your code.</p>
+                    <li><code>make clean</code>: Deletes any extra files
+ or directories that were created in the handout directory by the other 
+commands (specifically, it deletes the handin.tar file and the 
+assignment1-testgrade directory).</li>
+                    </ol>
+            </ul>
+        </div>
+
+        <div>
+            <h2>Submitting your Work</h2>
+            <p>When you submit your code to Autolab, we test it using a 
+combination of tests. First we apply the tests that were available to 
+you by running the testing make command, and second by running another 
+group of tests that are not available to you. This means that your code 
+might get a full grade on your laptop but might get a lower grade on 
+Autolab because it fails a few other tests. Only your grade on Autolab 
+will be counted.</p>
+            <p>To submit your work to Autolab:</p>
+            <ol>
+                <li>Create a <code>handin.tar</code> file that contains your solutions as described in the section above.</li>
+                <li>Upload <code>handin.tar</code> to Autolab in the assignment page.</li>
+                <li>Accept the academic integrity compliance check.</li>
+                <li>Click submit.</li>
+            </ol>
+            
+            <p><b>Important note:</b> You can only make 7 total 
+submissions for this assignment. Only your last submission will be 
+counted toward your grade. The website displays the number of remaining 
+submissions you have under the assignment submission page.</p>
+            <p>Before submitting your work to Autolab, make sure that 
+you test your code by running the testing make command, and by yourself 
+(compile it with gcc and try it yourself) if you want to try other 
+cases. You can test your work on your laptop as many times as you want 
+before you submit it to Autolab. But you can only submit it 7 times to 
+Autolab for this assignment.</p>
+        </div>
+
+
+        <div>
+            <h2>Problems</h2>
+            <div>
+                <h3>Problem 1</h3>
+                <p>Solve this problem inside the file <code>problem1.txt</code>.</p>
+                <p>Suppose you opened Ubuntu, and you are in the home 
+directory. Write the Ubuntu command required to do each of the following
+ operations. Write each command on one line. Notice that the order of 
+the commands you will write is important:</p>
+                <ol>
+                    <li>Create a new directory called Fall23</li>
+                    <li>Go inside the Fall23 directory</li>
+                    <li>Create a directory called FOC</li>
+                    <li>Go inside the FOC directory</li>
+                    <li>Create a new file called assignment0.txt, type 
+anything in it and save it. (In your answer only add the command that 
+creates the new file and opens it)</li>
+                    <li>Copy assignment0.txt to a new file called assignment1.txt</li>
+                    <li>Delete assignment0.txt</li>
+                    <li>Finally, display the content of the file assignment1.txt on the terminal (Hint: Not gedit!)</li>
+                </ol>
+                <p><b>This is not a C coding problem. Do not write C code. Just write the commands described above - one per line.</b></p>
+                <p><b>Note:</b> This problem will be graded manually 
+after the deadline. If you need feedback before the deadline, you can 
+check with your instructor or TA.</p>
+            </div>
+            <div>
+                <h3>Problem 2</h3>
+                <p>Solve this problem inside the file <code>problem2.c</code>.</p>
+                <p>An ice-cream can be thought of as two objects placed 
+on top of each other: a hemisphere (نصف كرة) and a cone (شكل مخروطي) as 
+shown in the figure below.</p>
+                <p class="center"><img src="instructions_files/uc.htm" width="10%"></p>
+                <p>Write a program that accepts the height (ارتفاع) of 
+the cone and the radius (نصف قطر) of the sphere (الشكل كروي) as inputs, 
+then computes the volume (حجم) of the ice-cream using the two following 
+formulas:</p>
+                <p class="center"><img src="instructions_files/uc_002.htm" width="20%"><img src="instructions_files/uc_003.htm" width="20%"></p>
+                <p><b>Accept the input WITHOUT printing any sentences 
+like "Please enter the volume". If you print anything extra it will be 
+considered part of the answer and will make your answer wrong.</b></p>
+                <p>Print the output exactly as in the examples below. If
+ the user enters a non-positive number for the height or the radius, 
+print "Invalid input" without the quotes.</p>
+                <h4>Examples</h4>
+                <table border="1">
+                    <tbody><tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>10 5</td>
+                        <td>523.33</td>
+                    </tr>
+                    <tr>
+                        <td>4.5 3.25</td>
+                        <td>121.61</td>
+                    </tr>
+                    <tr>
+                        <td>12.6 3.75</td>
+                        <td>295.85</td>
+                    </tr>
+                    <tr>
+                        <td>-10 20</td>
+                        <td>Invalid input</td>
+                    </tr>
+                </tbody></table>
+                <p><b>Note:</b> Use Pi (π) as 3.14. If you use other values like 22 over 7, or 3.1415, etc, you might get wrong output.</p>
+            </div>
+            <div>
+                <h3>Problem 3</h3>
+                <p>Solve this problem inside the file <code>problem3.c</code>.</p>
+                <p>Write a program that accepts a real number <code>x</code> as input, and calculates the value of <code>y</code> according to the following mathematical funciton:</p>
+                <p class="center"><img src="instructions_files/uc_004.htm" width="30%"></p>
+                <p><b>Accept the input WITHOUT printing any sentences 
+like "Please enter x". If you print anything extra it will be considered
+ part of the answer and will make your answer wrong.</b></p>
+                <p>Print the output exactly as in the examples below.</p>
+                <h4>Examples</h4>
+                <table border="1">
+                    <tbody><tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>-7</td>
+                        <td>-342.00</td>
+                    </tr>
+                    <tr>
+                        <td>-2.25</td>
+                        <td>-5.75</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>22.00</td>
+                    </tr>
+                </tbody></table>
+            </div>
+            <div>
+                <h3>Problem 4</h3>
+                <p>Solve this problem inside the file <code>problem4.c</code>.</p>
+                <p>Write a program that accepts 4 different integers: <code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code> as inputs. Print "Ordered" if they are in order. Print "Not-ordered" otherwise.</p>
+                <p>The integers are considered to be in order if they are ordered ascendingly (تصاعديا) or descendingly (تنازليا).</p>
+                <p><b>Accept the input WITHOUT printing any sentences 
+like "Please enter 4 integers". If you print anything extra it will be 
+considered part of the answer and will make your answer wrong.</b></p>
+                <h4>Examples</h4>
+                <table border="1">
+                    <tbody><tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>1 2 3 4</td>
+                        <td>Ordered</td>
+                    </tr>
+                    <tr>
+                        <td>4 3 2 1</td>
+                        <td>Ordered</td>
+                    </tr>
+                    <tr>
+                        <td>1 3 2 4</td>
+                        <td>Not-ordered</td>
+                    </tr>
+                </tbody></table>
+            </div>
+            <div>
+                <h3>Problem 5</h3>
+                <p>Solve this problem inside the file <code>problem5.c</code>.</p>
+                <p>Write a program that accepts 1 character as input, then outputs one of the following messages according to the character:</p>
+                <ul>
+                    <li>The character x is the new line character</li>
+                    <li>The character x is the tab character</li>
+                    <li>The character x is the space character</li>
+                    <li>The character x is a lowercase English character</li>
+                    <li>The character x is an uppercase English character</li>
+                    <li>The character x is a character digit</li>
+                    <li>The character x is a special character</li>
+                </ul>
+                <p>where x above should be replaced with the actual character from the input.</p>
+                <p><b>Accept the input WITHOUT printing any sentences 
+like "Please enter a character". If you print anything extra it will be 
+considered part of the answer and will make your answer wrong.</b></p>
+                <h4>Examples</h4>
+                <table border="1">
+                    <tbody><tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>r</td>
+                        <td>The character r is a lowercase English character</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>The character 9 is a character digit</td>
+                    </tr>
+                    <tr>
+                        <td>#</td>
+                        <td>The character # is a special character</td>
+                    </tr>
+                    <tr>
+                        <td>If the user presses <b>Enter</b></td>
+                        <td>The character&nbsp;<br>&nbsp;is the new line character</td>
+                    </tr>
+                </tbody></table>
+                <p><b>Note:</b> Pay attention to the spaces at the end of the first line and the beginning of the second line in the last example above.</p>
+            </div>
+            <div>
+                <h3>Problem 6</h3>
+                <p>Solve this problem inside the file <code>problem6.c</code>.</p>
+                <p>Write a program that accepts 3 different integers as 
+inputs that represent a date in the form of: day month year (for 
+example: 1 1 2023), then calculates which day of the year the date 
+represents.</p>
+                <p>The day of the year is calculated by adding the current day of the month to the number of days in the months that passed.</p>
+                <p><b>Accept the input WITHOUT printing any sentences 
+like "Please enter the date". If you print anything extra it will be 
+considered part of the answer and will make your answer wrong.</b></p>
+                <h4>Examples</h4>
+                <table border="1">
+                    <tbody><tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>1 1 2023</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>4 7 2021</td>
+                        <td>185</td>
+                    </tr>
+                    <tr>
+                        <td>12 3 1981</td>
+                        <td>71</td>
+                    </tr>
+                    <tr>
+                        <td>5 12 2020</td>
+                        <td>340</td>
+                    </tr>
+                    <tr>
+                        <td>14 12 1800</td>
+                        <td>348</td>
+                    </tr>
+                </tbody></table>
+                <p><b>Notes:</b></p>
+                <ul>
+                    <li>February has 28 days, unless the year is a leap year, then it has 29 days.</li>
+                    <li>Leap years are divisible by 4, except for 
+century years (years that end with 00). Century years are leap years 
+only if they are divisible by 400.</li>
+                </ul>
+            </div>
+        </div>
+    
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

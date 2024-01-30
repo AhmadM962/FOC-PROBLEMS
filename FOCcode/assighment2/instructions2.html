@@ -1,0 +1,580 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Assignment 2</title>
+
+        <style>
+            body {
+                background-color: #fff;
+                color: #333;
+                margin: 33px;
+                font-family: verdana, arial, helvetica, sans-serif;
+                font-size: 13px;
+                line-height: 18px;
+            }
+            p, ol, ul, td {
+                font-family: verdana, arial, helvetica, sans-serif;
+                font-size: 14px;
+                line-height: 18px;
+            }
+            pre {
+                background-color: #eee;
+                padding: 10px;
+                font-size: 11px;
+            }
+            a {
+                color: #000;
+            }
+            th {
+                padding: 0.5rem;
+            }
+            td {
+                padding: 1rem 1rem 1rem 0.6rem;
+            }
+            div {
+                margin-bottom: 32px;
+            }
+            div.field, div.actions {
+                margin-bottom: 10px;
+            }
+            label {
+                display: block;
+            }
+            .center {
+                text-align: center;
+            }
+            .center-table {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .red {
+                color: red;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Assignment 2: Loops and Using Functions</h1>
+            <h3>Due date: Wednesday, 20/December/2023 11:00 pm</h3>
+            <h4>Allowed number of submissions on Autolab: 10 submissions</h4>
+            <h4>Late days (grace days) allowed: 1 day</h4>
+            <p>In this assignment you will solve 8 problems that assess your skills in writing programs that have Loops and use Functions in C.</p>
+            <p>Each program will be written in a different file, but all programs will be submitted together in one compressed file called <code>handin.tar</code>.</p>
+            <p>Read the following instructions completely before you start writing code to understand what the problems are, where to solve them, how to prepare your <code>handin.tar</code> submission file, and how to test it before submitting.</p>
+        </div>
+        <div>
+            <h2>Getting Started</h2>
+            <ol>
+                <li>Download the lab materials from Autolab using the "Download handout" link and <b>extract</b> its content. You will get one directory called "assignment2-handout".</li>
+                <li>Inside the assignment2-handout directory, you will find a few files. Check the next section to understand what each file does.</li>
+                <li>You need to install a program called <code>make</code> to help you test your code and prepare your submissions.</li>
+                    <p><b>You only have to install <code>make</code> once, so you will not need to do it again in the next assignments.</b></p>
+                <p>To install <code>make</code> on Ubuntu, run the following command in the Ubuntu terminal and write your password when prompted to accept the installation:</p>
+                <p><code>sudo apt install make</code></p>
+                <p><small>Note for Mac users: If you are using Mac, you probably have <code>make</code> installed already. If not, you need to <a href="https://stackoverflow.com/a/10265766/6463999" target="_blank">install the Mac Command Line Tools</a>.</small></p>
+            </ol>
+        </div>
+        <div>
+            <h2>Assignment Files</h2>
+            <p>Inside the extracted directory, you will find multiple C files, 3 files called <code>checker.sh</code>, <code>runguard.c</code>, and <code>Makefile</code>, and a directory called <code>tests</code>. You will need to modify some of these files, while some others should not be modified at all.</p>
+            <h4>Files you need to modify:</h4>
+            <ul>
+                <li>Problem files:</li>
+                <p>Some problems will have one file, while others will have multiple files. The file or files of each problem will be used to solve <b>only that</b> problem.</p>
+                <p>When you submit your assignment, all the problem files will be submitted, even if they are empty. Do not worry, you will only receive grades for the files that you implement, any unimplemented file will get 0 points until it is implemented and graded again. <b>Do NOT delete any of the problem files or change their names. If you do that, they will not be graded.</b></p>
+                <p>To understand what you need to do in each problem, continue reading. Each problem is explained in the Problems section below.</p>
+            </ul>
+            <h4>Files you should NOT modify:</h4>
+            <ul>
+                <li>The <code>tests</code> directory and anything inside it:</li>
+                <p>This directory contains a number of sample tests that will be used to test your code before you submit it. Each problem has its own directory inside <code>tests</code>, and inside each problem's directory there are two directories: <code>inputs</code> and <code>outputs</code>. The <code>inputs</code> directory contains the inputs of the test cases, and the <code>outputs</code> directory contains the expected outputs for the inputs. Do not move, remove, or modify these files. If you do that, you will not be able to test your solutions on your machine.</p>
+
+                <li><code>checker.sh</code> and <code>runguard.c</code>:</li>
+                <p>These two files will help you grade most of your work on your laptop without having to submit it to Autolab. You will not use these file by yourself, but you will be using a command that uses them, so do not worry about them. You do not need to open them or understand how they work.</p>
+
+                <li><code>Makefile</code>:</li>
+                <p>This file contains a few commands (called "make commands") that will make your life A LOT EASIER if you are using Ubuntu or Mac. If you followed the instructions in the Getting Started section above and installed <code>make</code>, you will be able to use a few commands to prepare your submission and test your code before you submit it to Autolab.</p>
+                <p>To run any command, you just have to open the Ubuntu terminal (or the Mac terminal if you are on Mac) then <strong>cd into the assignment2-handout directory</strong> and type one of the following commands:</p>
+                <ol>
+                    <li><code>make prepare-handin</code>: Takes all the problem files in the directory and compresses them together into one file called <code>handin.tar</code>. This will be the file you will submit to Autolab.</li>
+                    <li><code>make test-handin</code>: Takes the <code>handin.tar</code> file that you generated from the <code>make prepare-handin</code> command, and extracts it into a new directory called assignment2-testgrade and and tests your solutions in it. It will display the result of grading in the terminal at the end. Here is an example of how it might look like:</li>
+                    <pre>
+Cleaning up..
+Compiling Problem 1..
+Running your solution for Problem 1..
+Running test case 1..
+Compiling Problem 2..
+Running your solution for Problem 2..
+Running test case 1..
+Running test case 2..
+.
+.
+===========================================================
+========================= Results =========================
+===========================================================
+Problem 1
+
+[Success] Produces correct output on all cases.
+===========================================================
+Problem 2
+
+[Failure] Produces incorrect output on case 2 with Input:
+15 31.5
+Your output:
+46
+The expected output:
+46.50
+===========================================================
+.
+.
+                        </pre>
+                    <p class="red"><b>Remember to always run <code>make prepare-handin</code> to create a new <code>handin.tar</code> file before running <code>make test-handin</code> to test your code.</b></p>
+                    <li><code>make clean</code>: Deletes any extra files or directories that were created in the handout directory by the other commands (specifically, it deletes the handin.tar file and the assignment2-testgrade directory).</li>
+                    </ol>
+            </ul>
+        </div>
+
+        <div>
+            <h2>Submitting your Work</h2>
+            <p>When you submit your code to Autolab, we test it using a combination of tests. First we apply the tests that were available to you by running the testing make command, and second by running another group of tests that are not available to you. This means that your code might get a full grade on your laptop but might get a lower grade on Autolab because it fails a few other tests. Only your grade on Autolab will be counted.</p>
+            <p>To submit your work to Autolab:</p>
+            <ol>
+                <li>Create a <code>handin.tar</code> file that contains your solutions as described in the section above.</li>
+                <li>Upload <code>handin.tar</code> to Autolab in the assignment page.</li>
+                <li>Accept the academic integrity compliance check.</li>
+                <li>Click submit.</li>
+            </ol>
+            
+            <p><b>Important note:</b> You can only make 10 total submissions for this assignment. Only your last submission will be counted toward your grade. The website displays the number of remaining submissions you have under the assignment submission page.</p>
+            <p>Before submitting your work to Autolab, make sure that you test your code by running the testing make command, and by yourself (compile it with gcc and try it yourself) if you want to try other cases. You can test your work on your laptop as many times as you want before you submit it to Autolab. But you can only submit it 10 times to Autolab for this assignment.</p>
+        </div>
+
+
+        <div class="problems">
+            <h2>Problems</h2>
+            <div>
+                <h3>Problem 1</h3>
+                <p>Solve this problem inside the file <code>problem1.c</code>.</p>
+                <p>In this problem you will write a program to calculate whether a number is a "Ronaldo Number" or not. A number is considered a Ronaldo Number if the sum of its digits, each to the power of the number of its digits, is either:</p>
+                <ul>
+                    <li>Equal to the number</li>
+                    <li>Equal to the number minus 7</li>
+                    <li>Equal to the number plus 7</li>
+                    <li>Equal to the number times 7</li>
+                    <li>Equal to the number divided by 7 (integer division)</li>
+                </ul>
+                <p>For example, the number 407 is a Ronaldo Number. It has three digits 4, 0 and 7, and the number of its digits is 3. If we raise each digit to 3 and sum them together we get: 4^3 + 0^3 + 7^3 = 64 + 0 + 343 = 407 which is equal to the number itself.</p>
+                <p>92 is also a Ronaldo Number. It has 2 digits 9 and 2, and the number of its digits is 2. If we raise each digit to 2 and sum them together we get: 9^2 + 2^2 = 81 + 4 = 85 which is equal to the number itself minus 7.</p>
+                
+                <p><b>Accept the input WITHOUT printing any sentences like "Please enter a number". If you print anything extra it will be considered part of the answer and will make your answer wrong.</b></p>
+                
+                <h4>Examples</h4>
+                <table border="1">
+                    <tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>407</td>
+                        <td>Ronaldo Number</td>
+                    </tr>
+                    <tr>
+                        <td>92</td>
+                        <td>Ronaldo Number</td>
+                    </tr>
+                    <tr>
+                        <td>13598</td>
+                        <td>Ronaldo Number</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>Not a Ronaldo Number</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h3>Problem 2</h3>
+                <p>Dietitians (أخصاؤو التغذية) use a number of metrics to give advice to their clients. One of these metrics is called the Body Mass Index (BMI) which measures body fat based on height and weight, it can be calculated using the following formula:</p>
+                <figure class="center">
+                    <img src="https://drive.google.com/uc?export=view&id=1RfLqMua8vuIYAULe4LsFImj6ObmA50bk" alt="BMI Equation" style="width:10%">
+                    <figcaption class="center">BMI Equation: weight is in KGs and height is in Meters.</figcaption>
+                </figure>
+                <p>Another metric is the Basal Metabolic Rate (BMR) which is the number of calories a person's body needs to accomplish its most basic life-sustaining functions. Its formula is different for males and females, it can be calculated as follows:</p>
+                <figure class="center">
+                    <img src="https://drive.google.com/uc?export=view&id=1TFyQRo_N3QTcVGg8l4APrtA5yewt_DYc" alt="BMR Equation for Males" style="width:50%">
+                    <figcaption class="center">BMR Equation for Males: weight is in kgs, height is in centimeters (cms), and age is in years.</figcaption>
+                </figure>
+                <figure class="center">
+                    <img src="https://drive.google.com/uc?export=view&id=1OKwDLtEluf_iqqek7acT7yWGn7V7nd4P" alt="BMR Equation for Females" style="width:50%">
+                    <figcaption class="center">BMR Equation for Females: weight is in kgs, height is in centimeters (cms), and age is in years.</figcaption>
+                </figure>
+                <p>Imagine you are a dietitian, and you have <code>n</code> clients. Write a program that accepts each client's weight (in kgs), height (in cms), age (in years), and gender (as a letter: 'M' for Male, or 'F' for female) then calculate the recommended calorie intake for each client based on the following table and print it to two decimal places. If any of the client's information is invalid, print "Invalid input" and move on to the next client.</p>
+                <table class="center-table" border="1">
+                    <tr>
+                        <th>BMI</th>
+                        <th>Fat Levels</th>
+                        <th>Calorie Intake</th>
+                    </tr>
+                    <tr>
+                        <td>Below 18.5</td>
+                        <td>Underweight</td>
+                        <td>BMR x 1.5</td>
+                    </tr>
+                    <tr>
+                        <td>Between 18.5 and 24.9</td>
+                        <td>Healthy</td>
+                        <td>BMR x 1.3</td>
+                    </tr>
+                    <tr>
+                        <td>Over 24.9 and up to 29.9</td>
+                        <td>Overweight</td>
+                        <td>BMR</td>
+                    </tr>
+                    <tr>
+                        <td>Over 29.9</td>
+                        <td>Obese</td>
+                        <td>BMR x 0.8</td>
+                    </tr>
+                </table>
+                <p><b>Accept the input WITHOUT printing any sentences like "Please enter the weight" or "Please enter the age". If you print anything extra it will be considered part of the answer and will make your answer wrong.</b></p>
+                <h4>Examples</h4>
+                <table border="1">
+                    <tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            2<br>
+                            89.0 170 27 F<br> 
+                            89.0 170 27 M
+                        </td>
+                        <td>
+                            1344.26<br>
+                            1554.60 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            3<br>
+                            74.0 170 20 F<br>
+                            65.0 -179 30 M<br>
+                            65.0 179 30 M
+                        </td>
+                        <td> 
+                            1571.93<br>
+                            Invalid input<br>
+                            2142.24
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h3>Problem 3</h3>
+                <p>Solve this problem inside the file <code>problem3.c</code>.</p>
+                <p>Write a program that accepts two integers <code>n</code> and <code>f</code>, then accepts <code>n</code> integers and finds and prints the sum of the integers among them that satisfy the following:</p>
+                <ul>
+                    <li>The integer should not be a multiple of <code>f</code>.</li>
+                    <li>The integer should not appear directly after a multiple of <code>f</code>.</li>
+                </ul>
+                <p>Check below the examples for explanations of the examples.</p>
+                <h4>Examples</h4>
+                <table border="1">
+                    <tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            5 4<br>
+                            7 8 10 5 1
+                        </td>
+                        <td>13</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            2 9<br>
+                            10 20
+                        </td>
+                        <td>30</td>
+                    </tr>
+                </table>
+                <p>In the first example, there are 5 numbers, and <code>f</code> is equal to 4. The first integer is 7, it is not a multiple of 4 so it is added to the sum (7). The second integer is 8, it is a multiple of 4 so it is not added to the sum (7). The third integer is 10, it is not a multiple of 4 but it came directly after a multiple of 4 (the 8 before it), so it is not added to the sum (7). The fourth integer is 5, it is not a multiple of 4, so it is added to the sum (7 + 5 = 12). The fifth and final integer is 1, it is not a multiple of 4, so it is added to the sum (7 + 5 + 1 = 13).</p>
+                <p>In the second example, there are 2 numbers, and <code>f</code> is equal to 9. The first integer is 10, it is not a multiple of 9 so it is added to the sum (10). The second and final integer is 20, it is not a multiple of 9, so it is added to the sum (10 + 20 = 30).</p>
+            </div>
+            <div>
+                <h3>Problem 4</h3>
+                <p>Solve this problem inside the file <code>problem4.c</code>.</p>
+                <p>In this problem, you need to fix the program inside <code>problem4.c</code>.</p>
+                <p>Start by opening the file and looking at the code. The code is supposed to to encrypt (يشفّر) the letters of a paragraph that consists of English letters, spaces, and punctuation marks, but it has one or more logical errors that make the output incorrect in some cases.</p>
+                <p>The encryption method is supposed to work as follows:</p>
+                <ul>
+                    <li>The program accepts 1 integer, called the <code>secret</code>. The <code>secret</code> is used to change all the letters of each word in the text. Each letter will be shifted by the value of <code>secret</code> to become another letter in the alphabet. For example, the word "hello" becomes "ifmmp" when <code>secret</code> is equal to 1, because each letter is shifted one letter. It becomes "jgnnq" when <code>secret</code> is equal to 2, because each letter is shifted two letters.</li>
+                    <li>The program keeps reading characters until the user enters a new line.</li>
+                </ul>
+                <p>Update the code to fix any issues in it, <b>and write a comment inside the code explaining what the issues were.</b></p>
+                <p class="red"><b>Note:</b> This problem can only be tested by submitting your handin to Autolab. Therefore make sure you test it by yourself and try many cases before you submit it.</p>
+            </div>
+            <div>
+                <h3>Problem 5</h3>
+                <p>Solve this problem inside the file <code>problem5.c</code>.</p>
+                <p>Two friends called Leena and Samar are participating in a contest against each other. The contest has <code>r</code> rounds, and each round has a different number of challenges. Here is how winners are decided:</p>
+                <ul>
+                    <li>The winner of the contest is the friend that wins the most rounds. The friends will continue to play all the rounds even if it is impossible for one of the friends to win.</li>
+                    <li>The winner of a round is the friend that wins more than half the challenges in that round. If a friend wins more than half the challenges at any time during the round, the round immediately ends.</li>
+                    <li>If the round ends and both friends have won the same number of challenges, the round is considered a tie and it does not count for any of the friends.</li>
+                </ul>
+                <h4>Input</h4>
+                <p>The input will start with one integer <code>r</code>, the number of rounds in the contest.</p>
+                <p>Then will follow <code>r</code> lines, each line will start with an integer <code>n</code>, the number of challenges in the round, then <b>at most</b> <code>n</code> letters, each letter represents the winner in one of the challenges. The letter 'L' means that Leena won that challenge, and the letter 'S' means that the Samar won that challenge. </p>
+                <h4>Output</h4>
+                <p>For each round, print the name of the winner "Leena" or "Samar" on a separate line. Print "Tie" if no one won the round.</p>
+                <p>When the contest ends, print <code>"Leena won the contest with x round(s)"</code> or <code>"Samar won the contest with x round(s)"</code>, replace x with the number of rounds the winner won. If the contest ends in a tie, print "It is a tie with x round(s) each", replace x with the number of rounds both friends won.</p>
+                <h4>Example</h4>
+                <table border="1">
+                    <tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>3<br>5 S S L L S<br>5 S L S L S<br>4 L L L</td>
+                        <td>Samar<br>Samar<br>Leena<br>Samar won the contest with 2 round(s)</td>
+                    </tr>
+                    <tr>
+                        <td>2<br>2 S S<br>4 L L S S</td>
+                        <td>Samar<br>Tie<br>Samar won the contest with 1 round(s)</td>
+                    </tr>
+                    <tr>
+                        <td>2<br>2 S S<br>2 L L</td>
+                        <td>Samar<br>Leena<br>It is a tie with 1 round(s) each</td>
+                    </tr>
+                </table>
+                <p><b>Explanation of the first example:</b> The contest has 3 rounds</p>
+                <ul>
+                    <li>The first round has 5 challenges, Samar won the first 2 challenges, then Leena won the 2 after so the score in this round is 2-2 so far. Samar won the last challenge in the round so she won the round.</li>
+                    <li>The second round has also 5 challenges, Samar won the first challenge (1-0), then Leena won the second one (1-1). Samar won the third (2-1), Leena the fourth (2-2), and then Samar the fifth (3-2) so she won the second round as well.</li>
+                    <li>Samar won 2 of the 3 rounds so there is no chance for Leena to win the contest, but the contest still goes on because all the rounds must be played.</li>
+                    <li>The third round has 4 challenges, Leena wins the first two challenges (2-0), then when Leena wins the third challenge (3-0) there is no point in continuing the other challenges in the round because Leena has won 3 out of 4 challenges so the round stops.</li>
+                    <li>All the rounds have finished. Samar won the first two, and Leena won the last. Samar is the winner of the contest because she won more rounds.</li>
+                </ul>
+                <p><b>Very important note:</b> When you use <code>scanf</code> to read multiple characters (such as reading a character inside a loop), scanf will consider the spaces and new lines in the input as characters, which will then be stored inside your variables instead of the real characters. To have <code>scanf</code> ignore spaces and new lines, add a single space before <code>%c</code> in the <code>scanf</code> statement, as follows: </p>
+                <pre>scanf(" %c", &winner);</pre>
+            </div>
+            <div>
+                <h3>Problem 6</h3>
+                <p>Solve this problem inside the file <code>problem6.c</code>. Do not modify any other files for this problem.</p>
+
+                <p>You are given a function called "drawRow" that draws a row of characters on the screen. You <b>need to use this function</b> to draw a <a href="https://en.wikipedia.org/wiki/Rook_(chess)">Chess Rook</a>.</p>
+<pre>
+xxxxxxx
+ -----
+  xxx
+   H
+  xxx
+ -----
+xxxxxxx
+</pre>
+                <ol>
+                    <li>Go to the file <code>problem6-library.h</code> to read how to use the function, and what type of parameters it accepts.</li>
+                    <li><b>Optional:</b> Go to the file <code>problem6-library.c</code> to see how the function works on the inside if you are interested.</li>
+                    <li>Go to <code>problem6.c</code> and start writing your code. Start by accepting an integer as input, the integer will be the height of the Rook (the number of rows).</li>
+                    <li>You need to use the function "drawRow" to draw the Rook as follows:</li>
+                    <ul>
+                        <li>Start drawing the first row with the 'x' letter and then use a dash sign '-' to draw the second row:</li>
+<pre>
+xxxxxxx
+ -----
+</pre>
+                        <li>Keep alternating between the two characters each row until the top half of the Rook is drawn:</li>
+<pre>
+xxxxxxx
+ -----
+  xxx
+</pre>
+                        <li>If the height of the Rook is odd, you need to draw the center using the uppercase 'H' letter only:</li>
+<pre>
+xxxxxxx
+ -----
+  xxx
+   H
+</pre>
+                        <li>Start drawing the bottom half of the Rook using the same character you used to draw the last row of the top half:</li>
+                        <br>
+                        <table width="100%">
+                            <tr>
+                                <th>Odd Height</th>
+                                <th>Even Height</th>
+                            </tr>
+                            <tr>
+                                <td>
+<pre>
+xxxxxxx
+ -----
+  xxx
+   H
+  xxx
+</pre>
+                                </td>
+                                <td>
+<pre>
+xxxxxx
+ ----
+  xx
+  xx
+
+</pre>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br><li>Keep alternating between the two characters each row until the bottom half of the Rook is drawn:</li><br>
+                        <table width="100%">
+                            <tr>
+                                <th>Odd Height</th>
+                                <th>Even Height</th>
+                            </tr>
+                            <tr>
+                                <td>
+<pre>
+xxxxxxx
+ -----
+  xxx
+   H
+  xxx
+ -----
+xxxxxxx
+</pre>
+                                </td>
+                                <td>
+<pre>
+xxxxxx
+ ----
+  xx
+  xx
+ ----
+xxxxxx
+
+</pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </ul>
+                    
+                </ol>
+                <p><b>Hint:</b> It might be helpful to think about drawing the Rook in 3 separate parts: Draw the top half, draw the middle part if necessary, then finally draw the bottom half.</p>
+                <p><strong>Note:</strong> If you want to compile this problem by yourself, you need to add the library file in your compilation command, e.g.,</p>
+                <pre>gcc problem6.c problem6-library.c -o problem6</pre>
+            </div>
+            <div>
+                <h3>Problem 7</h3>
+                <p>Solve this problem inside the file <code>problem7.c</code>. Do not modify any other files for this problem.</p>
+
+                <p>In this problem you will write a program that finds the <a href="https://en.wikipedia.org/wiki/Greatest_common_divisor">Greatest Common Divisor</a> and the <a href="https://en.wikipedia.org/wiki/Least_common_multiple">Least Common Multiple</a> between <code>n</code> integers.</p>
+                <p>The Greatest Common Divisor (GCD) between two integers is the largest positive integer that the 2 integers can be divided by without a remainder. For example, the GCD of 12 and 20 is 4, because 4 is the largest integer both 12 and 20 are divisible by.</p>
+                <p>The Least Common Multiple (LCM) between two integers is the smallest positive integer that is divisible by the 2 integers without a remainder. For example, the LCM of 12 and 20 is 60, because 60 is the smallest integer that is divisible by both 12 and 20.</p>
+                
+                <h4>Getting Started</h4>
+                <ul>
+                    <li>Your program must accept <code>n</code>, the number of integers. Then it must accept <code>n</code> integers, and finally print the Greatest Common Divisor between all the <code>n</code> integers and the Least Common Multiple between all the <code>n</code> integers.</li>
+                    <li>You are given a function called "greatestCommonDivisor" that accepts 2 integers and returns the GCD of them. You can read about the function and how to use it by going to the file <code>problem7-library.h</code>. You must use this function to find the GCD of all <code>n</code> integers. If you are interested in seeing how it works on the inside, go to the file <code>problem7-library.c</code>.</li>
+                    <li>To find the LCM of two integers, you can simply multiply the two integers then divide them by their GCD. For example, LCM(12, 20) = (12 x 20) divided by GCD(12, 20) = 240 divided by 4 = 60.</li>
+                    <li>We can use the function "greatestCommonDivisor" and the LCM formula from above to find the GCD and the LCM of 2 integers only, but we need to find the GCD and the LCM between all <code>n</code> integers. Luckily for us, GCD and LCM are associative, which means that they can be applied to more than just 2 integers by simply applying them to the integers in pairs.</li>
+                </ul>
+                <p>Example: To find the GCD of 12, 20, and 34 we simply find the GCD of 12 and 20 first, which is 4, then we find the GCD of 4 and 34, which is 2. The final answer 2 is the GCD of the 3 numbers together.</p>
+                <p>Example: To find the LCM of 12, 20, and 34 we simply find the LCM of 12 and 20 first, which is 60, then we find the LCM of 60 and 34, which is 1020. The final answer 1020 is the LCM of the 3 numbers together.</p>
+                
+                <p><b>Accept the input WITHOUT printing any sentences like "Please enter a number". If you print anything extra it will be considered part of the answer and will make your answer wrong.</b></p>
+                
+                <h4>Examples</h4>
+                <table border="1">
+                    <tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            3<br>
+                            12 20 34
+                        </td>
+                        <td>
+                            GCD: 2<br>
+                            LCM: 1020
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            4<br>
+                            4 8 20 32
+                        </td>
+                        <td>
+                            GCD: 4<br>
+                            LCM: 160
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            5<br>
+                            6 12 36 72 144
+                        </td>
+                        <td>
+                            GCD: 6<br>
+                            LCM: 144
+                        </td>
+                    </tr>
+                </table>
+                <p><strong>Note:</strong> If you want to compile this problem by yourself, you need to add the library file in your compilation command, e.g.,</p>
+                <pre>gcc problem7.c problem7-library.c -o problem7</pre>
+            </div>
+            <div>
+                <h3>Problem 8</h3>
+                <p>Solve this problem inside the file <code>problem8.c</code>. Do not modify any other files for this problem.</p>
+                <p>The Sine of an angle can be found using the <code>sin</code> function in <code>math.h</code>. It can also be calculated manually using the following series:</p>
+                <figure class="center">
+                    <img src="https://drive.google.com/uc?export=view&id=1xhMRdN2PQRjoZu8z_MBsnoxjNEFrdSG5" alt="Sine Equation" style="width:30%">
+                    <figcaption class="center">Sine Series: x is in radians. ! is the factorial sign.</figcaption>
+                </figure>
+                <p>Your task is to write a program that accepts the value of an angle in degrees and the number of terms to calculate from the series, and finds the sine of that angle using the series above up to the number of terms.</p>
+                <p>E.g., if the number of terms is 1, the program should use the first term of the series (x) only to calculate the sine. If the number of terms is 2, the program should use the first two terms of the series (x - (x^3 / x!)) to calculate the sine. The ! sign is the factorial sign. The factorial of a number is the product of all the numbers from 1 to that number. E.g., 3! = 3 x 2 x 1 = 6, and 5! = 5 x 4 x 3 x 2 x 1 = 120. You do not need to calculate the factorial yourself.</p>
+                <p>You are given a function called "factorial" that accepts 1 integer and returns its factorial. You can read about the function and how to use it by going to the file <code>problem8-library.h</code>. <strong>You must use this function in your code.</strong> If you are interested in seeing how it works on the inside, go to the file <code>problem9-library.c</code>.</p>
+                <p><b>Accept the input WITHOUT printing any sentences like "Please enter an angle". If you print anything extra it will be considered part of the answer and will make your answer wrong.</b></p>
+                
+                <p><b>Notes:</b></p>
+                <ul>
+                    <li>Use Pi (π) as 3.14. If you use other values like 22 over 7, or 3.1415, etc, you might get wrong output.</li>
+                    <li>Use doubles instead of floats.</li>
+                    <li>radians = degrees x π / 180.0</li>
+                    <li>Print the answer to 12 decimal places.</li>
+                </ul>
+                
+                <h4>Examples</h4>
+                <table border="1">
+                    <tr>
+                        <th>Input</th>
+                        <th>Output</th>
+                    </tr>
+                    <tr>
+                        <td>30 6</td>
+                        <td>0.499770102643</td>
+                    </tr>
+                    <tr>
+                        <td>30 1</td>
+                        <td>0.523333333333</td>
+                    </tr>
+                    <tr>
+                        <td>90 3</td>
+                        <td>1.004508660464</td>
+                    </tr>
+                    <tr>
+                        <td>90 9</td>
+                        <td>0.999999682932</td>
+                    </tr>
+                </table>
+                <p><strong>Note:</strong> If you want to compile this problem by yourself, you need to add the library file in your compilation command, e.g.,</p>
+                <pre>gcc problem8.c problem8-library.c -o problem8</pre>
+            </div>
+        </div>
+    </body>
+</html>
